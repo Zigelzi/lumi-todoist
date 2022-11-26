@@ -1,11 +1,10 @@
+<script>
+    import Header from '$lib/components/Header.svelte';
+    import Form from '$lib/components/Form.svelte';
+</script>
+
 <div id="app-container" class="app-container">
-
-    <!-- Header with information -->
-    <div class="app-header">
-        <div>10 Total</div>
-        <div class="task-count">1 Remaining</div>
-    </div>
-
+    <Header/>
     <!-- List of actual todos -->
     <div class="app-body">
         <ul>
@@ -27,15 +26,53 @@
                 <button class="btn btn-delete fa-solid fa-trash"></button>
                 <!-- </div> -->
             </li>
-
-
         </ul>
     </div>
-
-    <!-- Add form at bottom -->
-    <div class="app-form">
-        <input placeholder="Add Todo.." type="text" class="input-text" name="">
-        <button class="btn fa-solid fa-plus"></button>
-    </div>
-
+    <Form />
 </div>
+
+<style>
+ul {
+list-style-type: none;
+-webkit-padding-start: 0;
+padding-left: 0px;
+}
+
+.app-container {
+    width: 400px;
+    min-height: 500px;
+    background-color: #282c34;
+    box-shadow: 0 20px 80px rgba(0, 0, 0, 0.6);
+    background: radial-gradient(circle, #282c34 0%, rgba(40, 48, 56, 1) 100%);
+    position: relative;
+    border-radius: 1em;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.app-body {
+    flex-grow: 1;
+    max-height: 600px;
+    overflow-x: hidden;
+}
+
+.todo-list:first-of-type {
+    border-top: 1px solid rgb(121, 121, 121);
+    padding-top: 10px;
+}
+
+.list-item-view {
+    padding-top: 5px;
+    padding-bottom: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.completed {
+    color: #6a6f75;
+    opacity: 0.5;
+}
+</style>
