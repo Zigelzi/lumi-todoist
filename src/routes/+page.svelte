@@ -1,43 +1,16 @@
 <script>
     import Header from '$lib/components/Header.svelte';
     import Form from '$lib/components/Form.svelte';
+    import TodoList from '$lib/components/TodoList.svelte';
 </script>
 
 <div id="app-container" class="app-container">
     <Header/>
-    <!-- List of actual todos -->
-    <div class="app-body">
-        <ul>
-
-            <li class="todo-list list-item-view">
-                <span>
-        <button class="btn btn-done fa-solid fa-square"></button>
-        <span>First Todo</span>
-                </span>
-                <button class="btn btn-delete fa-solid fa-trash"></button>
-            </li>
-
-            <li class="todo-list list-item-view completed">
-                <!-- <div class="list-item-view"> -->
-                <span>
-        <button class="btn btn-done"><i class="fa-solid fa-check-square"></i></button>
-        <span>First Todo</span>
-                </span>
-                <button class="btn btn-delete fa-solid fa-trash"></button>
-                <!-- </div> -->
-            </li>
-        </ul>
-    </div>
+    <TodoList />
     <Form />
 </div>
 
 <style>
-ul {
-list-style-type: none;
--webkit-padding-start: 0;
-padding-left: 0px;
-}
-
 .app-container {
     width: 400px;
     min-height: 500px;
@@ -50,29 +23,5 @@ padding-left: 0px;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-}
-
-.app-body {
-    flex-grow: 1;
-    max-height: 600px;
-    overflow-x: hidden;
-}
-
-.todo-list:first-of-type {
-    border-top: 1px solid rgb(121, 121, 121);
-    padding-top: 10px;
-}
-
-.list-item-view {
-    padding-top: 5px;
-    padding-bottom: 0px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.completed {
-    color: #6a6f75;
-    opacity: 0.5;
 }
 </style>
