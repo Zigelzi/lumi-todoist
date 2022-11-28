@@ -2,11 +2,17 @@
     import Header from '$lib/components/Header.svelte';
     import Form from '$lib/components/Form.svelte';
     import TodoList from '$lib/components/TodoList.svelte';
+
+    let todos = [
+        { id: 1, text :'Do dishes', completed: false },
+        { id: 2, text :'Read emails', completed: true },
+        { id: 3, text :'Wash clothes', completed: false },
+    ]
 </script>
 
 <div id="app-container" class="app-container">
     <Header/>
-    <TodoList />
+    <TodoList todos = { todos } />
     <Form />
 </div>
 
