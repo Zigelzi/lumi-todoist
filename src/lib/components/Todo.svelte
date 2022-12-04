@@ -1,10 +1,22 @@
 <script>
+    import {createEventDispatcher} from 'svelte';
+    export let itemId;
     export let itemText;
     export let completed;
+
+    const dispatch = createEventDispatcher();
+    function toggleTodoStatus(id) {
+        dispatch('todoUpdated', {
+            id: id
+        })
+    }
 </script>
 <li class="todo-list list-item-view" class:completed>
     <span>
-    <button class="btn btn-done fa-solid fa-square { completed ? 'fa-square-check': 'fa-square' }"></button>
+    <button class="btn btn-done fa-solid fa-square 
+    { completed ? 'fa-square-check': 'fa-square' }"
+    on:click = {() => toggleTodoStatus(itemId)}
+    ></button>
     <span>{ itemText }</span>
     </span>
     <button class="btn btn-delete fa-solid fa-trash"></button>

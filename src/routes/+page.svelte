@@ -8,11 +8,18 @@
         { id: 2, text :'Read emails', completed: true },
         { id: 3, text :'Wash clothes', completed: false },
     ]
+
+    function updateTodo(event) {
+        let updatedTodoId = event.detail.id;
+        let todo = todos.find(todo => todo.id === updatedTodoId)
+        todo.completed = !todo.completed;
+        todos = todos;
+    }
 </script>
 
 <div id="app-container" class="app-container">
     <Header/>
-    <TodoList todos = { todos } />
+    <TodoList todos = { todos } on:todoUpdated={updateTodo}/>
     <Form />
 </div>
 
