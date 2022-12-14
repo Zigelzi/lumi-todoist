@@ -9,16 +9,32 @@
         { id: 3, text :'Wash clothes', completed: false },
     ]
 
+    let totalTodos;
+    let remainingTodos;
+
+    $: totalTodos = todos.length;
+    $: remainingTodos = countRemainingTodos(todos);
+
     function updateTodo(event) {
         let updatedTodoId = event.detail.id;
         let todo = todos.find(todo => todo.id === updatedTodoId)
         todo.completed = !todo.completed;
         todos = todos;
     }
+
+    function countRemainingTodos(todos) {
+        let unfinishedTodos = 0;
+        todos.forEach(todo => {
+            if(!todo.completed) {
+                unfinishedTodos++;
+            }
+        });
+        return unfinishedTodos;
+    }
 </script>
 
 <div id="app-container" class="app-container">
-    <Header/>
+    <Header {totalTodos} {remainingTodos}/>
     <TodoList todos = { todos } on:todoUpdated={updateTodo}/>
     <Form />
 </div>
