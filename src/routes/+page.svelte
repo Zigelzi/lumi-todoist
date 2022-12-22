@@ -9,6 +9,7 @@
         { id: 3, text :'Wash clothes', completed: false },
     ]
 
+
     let totalTodos;
     let remainingTodos;
 
@@ -31,12 +32,28 @@
         });
         return unfinishedTodos;
     }
+
+    function addNewTodo(event) {
+        let newTodoText = event.detail.text.trim();
+
+        if (newTodoText !== "") {
+            let newId = todos.length + 1;
+            let newTodo = {
+                id: newId,
+                text: newTodoText,
+                completed: false
+            }
+
+            todos.push(newTodo);
+            todos = todos;
+        }
+    }
 </script>
 
 <div id="app-container" class="app-container">
     <Header {totalTodos} {remainingTodos}/>
     <TodoList todos = { todos } on:todoUpdated={updateTodo}/>
-    <Form />
+    <Form on:todoAdded={addNewTodo}/>
 </div>
 
 <style>
