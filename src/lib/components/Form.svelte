@@ -3,17 +3,19 @@
     const dispatch = createEventDispatcher();
     let newTodoText;
 
-    function addTodo() {
-        dispatch('todoAdded', {
+    function addTodo(event) {
+        if (event.type === 'click' || event.code === 'Enter') {
+            dispatch('todoAdded', {
             text: newTodoText
         });
         
         newTodoText = '';
+        }
     }
 </script>
 <!-- Add form at bottom -->
 <div class="app-form">
-    <input placeholder="Add Todo.." type="text" class="input-text" name="" bind:value={newTodoText}>
+    <input placeholder="Add Todo.." type="text" class="input-text" name="" bind:value={newTodoText} on:keyup={addTodo}>
     <button class="btn fa-solid fa-plus" on:click={addTodo}></button>
 </div>
 

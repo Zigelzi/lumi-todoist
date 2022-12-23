@@ -1,6 +1,18 @@
 <script>
     import {createEventDispatcher} from 'svelte';
+    import {fly} from 'svelte/transition';
+
     export let todo;
+
+    let flyInParameters = {
+        y: 100,
+        duration: 1000
+    }
+
+    let flyOutParameters = {
+        x: 350,
+        duration: 600
+    }
 
     const dispatch = createEventDispatcher();
     function toggleTodoStatus(id) {
@@ -15,7 +27,7 @@
         });
     }
 </script>
-<li class="todo-list list-item-view" class:completed="{todo.completed}">
+<li class="todo-list list-item-view" class:completed="{todo.completed}" in:fly={flyInParameters} out:fly={flyOutParameters}>
     <span>
     <button class="btn btn-done fa-solid fa-square 
     { todo.completed ? 'fa-square-check': 'fa-square' }"
