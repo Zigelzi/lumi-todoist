@@ -9,10 +9,9 @@
     <ul>
         {#each todos as todo (todo.id)}
         <Todo 
-        itemId={todo.id}
-        itemText={todo.text} 
-        completed = { todo.completed }
+        todo={todo}
         on:todoUpdated
+        on:todoDeleted
         />
         {/each}
     </ul>

@@ -37,7 +37,8 @@
         let newTodoText = event.detail.text.trim();
 
         if (newTodoText !== "") {
-            let newId = todos.length + 1;
+            let currentMaxIndex = todos.reduce((previous, todo) => Math.max(previous, todo.id), 0);
+            let newId = currentMaxIndex + 1;
             let newTodo = {
                 id: newId,
                 text: newTodoText,
@@ -48,11 +49,19 @@
             todos = todos;
         }
     }
+
+    function deleteTodoFromList(event) {
+        let todoIndex = todos.indexOf(event.detail.todo)
+        if (todoIndex > -1) {
+            todos.splice(todoIndex, 1)
+        }
+        todos = todos;
+    }
 </script>
 
 <div id="app-container" class="app-container">
     <Header {totalTodos} {remainingTodos}/>
-    <TodoList todos = { todos } on:todoUpdated={updateTodo}/>
+    <TodoList todos = { todos } on:todoUpdated={updateTodo} on:todoDeleted={deleteTodoFromList}/>
     <Form on:todoAdded={addNewTodo}/>
 </div>
 
